@@ -1,22 +1,25 @@
-# Atualizando firmware Unifi no modo online via SSH
+# Unifi
+[comment]: <> (Aqui você pode descrever seu repositório, falar um pouco saca?)
 
-1 - Acesse o site https://www.ui.com/download ;
+## Atualizando firmware Unifi no modo online via SSH
 
---Selecione o modelo do seu rádio na coluna da esqueda;
+1. Acesse o site https://www.ui.com/download ;
 
---Após abrir o modelo selecionado, selecione a versão do firmware desejado e clique em File na última coluna do arquivo;
+- Selecione o modelo do seu rádio na coluna da esqueda;
 
---Na janela de Download você poderá deverá clicar em copy url para copiar a url do arquivo a ser baixado;
+- Após abrir o modelo selecionado, selecione a versão do firmware desejado e clique em File na última coluna do arquivo;
 
-2 - Conecte-se ao rádio utilizando seu seu terminal linux, digite o comando seguinte:
+- Na janela de Download você poderá deverá clicar em copy url para copiar a url do arquivo a ser baixado;
 
-```shell
+2. Conecte-se ao rádio utilizando seu seu terminal linux, digite o comando seguinte:
+
+```bash
 # ssh -v ip_host ou ssh -v ubnt@ip_hot (nesta sintaxe você informa o usuário de login)
 ```
 
---Na tela do rádio digite o seguinte comando e dê enter:
+- Na tela do rádio digite o seguinte comando e dê enter:
 
-```shell
+```bash
 BusyBox v1.25.1 () built-in shell (ash)
 
 
@@ -32,8 +35,9 @@ BusyBox v1.25.1 () built-in shell (ash)
 BZ.v4.3.28# upgrade (cole aqui a url copiada do site da ubiquit)
 ```
 
-* Exemplo:
-```shell
+> Exemplo:
+
+```bash
 BusyBox v1.25.1 () built-in shell (ash)
 
 
@@ -49,65 +53,63 @@ BusyBox v1.25.1 () built-in shell (ash)
 BZ.v4.3.28# upgrade https://dl.ui.com/unifi/firmware/(verãoDoFirmware).bin
 ```
 
-***Aguarde o processo de atualização, neste momento você perderá a comunicação com o dispositivo, para monitorá-lo basta abrir um terminal ou prompt de comando de digitar ping ip_host.***
+> **Obs.:** Aguarde o processo de atualização, neste momento você perderá a comunicação com o dispositivo, para monitorá-lo basta abrir um terminal ou prompt de comando de digitar ping ip_host.
 
 Após o processo finalizado basta realizar a adoção do dispositivo no controller ou caso já esteja adotado é só aguardar o dispositivo ficar on-line.
 
+## Atualizando firmware Unifi no modo offline ou StandAlone via SSH:
 
+1. Acesse o site https://www.ui.com/download ;
 
-# Atualização de Unifi modo offline ou standAlone via SSH:
+- Selecione o modelo do seu rádio na coluna da esqueda;
 
-1 - Acesse o site https://www.ui.com/download ;
+- Após abrir o modelo selecionado, selecione a versão do firmware desejado e clique em File na última coluna do arquivo;
 
---Selecione o modelo do seu rádio na coluna da esqueda;
+- Na janela de Download você poderá optar em baixar o arquivo clicando em Download File;
 
---Após abrir o modelo selecionado, selecione a versão do firmware desejado e clique em File na última coluna do arquivo;
+2. Para realizar a cópia do arquivo para o dispositivo primeiro devemos fazer algumas alterações:
 
---Na janela de Download você poderá optar em baixar o arquivo clicando em Download File;
+- Em seu terminal acesse a pasta de download onde está seu arquivo;
 
-2 - Para realizar a cópia do arquivo para o dispositivo primeiro devemos fazer algumas alterações:
+- Temos renomear o arquivo para que não seja necessário a mudança dentro do dispositivo após a cópia.
 
---Em seu terminal acesse a pasta de download onde está seu arquivo;
-
---Temos renomear o arquivo para que não seja necessário a mudança dentro do dispositivo após a cópia.
-
-```shell
+```bash
 # mv nome_arquivo fwupdate.bin
 ```
 
-***Obs: Para qualquer versão de firmware o nome deverá sempre se o mesmo para upload.***
+> **Obs:** Para qualquer versão de firmware o nome deverá sempre se o mesmo para upload.
 
-* Para copiarmos este arquivo para o rádio utilizaremos a ferramenta SCP - Secure Copy Protocol.
+- Para copiarmos este arquivo para o rádio utilizaremos a ferramenta SCP - Secure Copy Protocol.
 
 A sintaxe do comando é bem simples e segue essa regra:
-```shell
-# scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
-```
+
+`scp scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2`
+
 Agora vamos realizar a cópia do arquivo para o rádio utilizando o seguinte comando:
 
-```shell
-
+```bash
 # scp nome_arquivo usuario@ip_radio:caminho_pasta_destino
 ```
 
-**Na documentação da Ubiquiti a pasta de destino deverá ser /tmp/**
+> **Atenção!** Segundo a documentação da Ubiquiti a pasta de destino deverá ser /tmp/
 
-```shell
+```bash
 # scp fwupdate.bin ubnt@ip_radio:/tmp/
 ```
 
-**Após o colocar a senha do usuário uma barra de progressão será mostrada e informará o tempo restante até o final da transferência do arquivo.**
+- Após o colocar a senha do usuário uma barra de progressão será mostrada e informará o tempo restante até o final da transferência do arquivo.
 
 3 - Terminado o processo de cópia agora é hora de atualizar;
 
-Conecte-se ao rádio via SSH utilizando seu seu terminal:
+- Conecte-se ao rádio via SSH utilizando seu seu terminal:
 
-```shell
+```bash
 # ssh -v ubnt@ip_host
 ```
 
-Certifique que na pasta /tmp/ o arquivo esteja lá digiando:
-```shell
+- Certifique-se que o arquivo está na pasta /tmp com o comando:
+
+```bash
 BusyBox v1.25.1 () built-in shell (ash)
 
 
@@ -122,9 +124,9 @@ BusyBox v1.25.1 () built-in shell (ash)
 
 BZ.v4.3.28# ls -l /tmp/
 ```
-* A saída do comando deverá constar o arquivo:
+- A saída do comando deverá constar o arquivo:
 
-```shell
+```bash
 BZ.v4.3.28:# ls -l /tmp/
 -rw-r--r--    1 admin    root            31 May  9 03:06 TZ
 -rw-r--r--    1 admin    root          3939 Dec 31  1969 default.cfg
@@ -151,12 +153,12 @@ drwxr-xr-x    2 admin    root            40 Dec 31  1969 tmp
 drwxr-xr-x   10 admin    root           200 May  9 03:07 utermd
 ```
 
-4 - Com o arquivo na pasta basta executar a atualização:
+4. Com o arquivo na pasta basta executar a atualização:
 
-```shell
+```bash
 BZ.v4.3.24:# syswrapper.sh upgrade2 &
 ```
 
-**Obs: Caso não lembre do nome do script syswrapper.sh, basta digitar sys e pressionar TAB que o será completado. Após a confirmação do comando e aguarde o processo de atualização, neste momento você perderá a comunicação com o dispositivo, para monitorá-lo basta abrir um terminal ou prompt de comando de digitar ping ip_host.**
+> **Obs:** Caso não lembre do nome do script syswrapper.sh, basta digitar sys e pressionar TAB que o será completado. Após a confirmação do comando e aguarde o processo de atualização, neste momento você perderá a comunicação com o dispositivo, para monitorá-lo basta abrir um terminal ou prompt de comando de digitar ping ip_host.
 
-Após o processo finalizado basta realizar a adoção do dispositivo no controller ou caso já esteja adotado é só aguardar o dispositivo ficar on-line.
+Após o processo finalizado basta realizar a adoção do dispositivo no controller, se já estiver adotado é só aguardar o dispositivo ficar on-line.
