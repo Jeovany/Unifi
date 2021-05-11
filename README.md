@@ -80,9 +80,9 @@ Após o processo finalizado basta realizar a adoção do dispositivo no controll
 * Para copiarmos este arquivo para o rádio utilizaremos a ferramenta SCP - Secure Copy Protocol.
 
 A sintaxe do comando é bem simples e segue essa regra:
-
-scp scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
-
+```shell
+# scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
+```
 Agora vamos realizar a cópia do arquivo para o rádio utilizando o seguinte comando:
 
 ```shell
