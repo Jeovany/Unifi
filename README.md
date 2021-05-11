@@ -16,6 +16,7 @@
 
 --Na tela do rádio digite o seguinte comando e dê enter:
 
+```shell
 BusyBox v1.25.1 () built-in shell (ash)
 
 
@@ -29,10 +30,10 @@ BusyBox v1.25.1 () built-in shell (ash)
       Welcome to UniFi UAP-AC-Lite!
 
 BZ.v4.3.28# upgrade (cole aqui a url copiada do site da ubiquit)
-
+```
 
 * Exemplo:
-
+```shell
 BusyBox v1.25.1 () built-in shell (ash)
 
 
@@ -46,7 +47,7 @@ BusyBox v1.25.1 () built-in shell (ash)
       Welcome to UniFi UAP-AC-Lite!
 
 BZ.v4.3.28# upgrade https://dl.ui.com/unifi/firmware/(verãoDoFirmware).bin
-
+```
 
 ***Aguarde o processo de atualização, neste momento você perderá a comunicação com o dispositivo, para monitorá-lo basta abrir um terminal ou prompt de comando de digitar ping ip_host.***
 
@@ -106,7 +107,7 @@ Conecte-se ao rádio via SSH utilizando seu seu terminal:
 ```
 
 Certifique que na pasta /tmp/ o arquivo esteja lá digiando:
-
+```shell
 BusyBox v1.25.1 () built-in shell (ash)
 
 
@@ -120,7 +121,7 @@ BusyBox v1.25.1 () built-in shell (ash)
       Welcome to UniFi UAP-AC-Lite!
 
 BZ.v4.3.28# ls -l /tmp/
-
+```
 * A saída do comando deverá constar o arquivo:
 
 ```shell
